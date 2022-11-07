@@ -1,0 +1,27 @@
+---
+version: '3'
+services:
+    ansible:
+      container_name: ansible
+      image: ansible
+      tty: true
+      stdin_open: true
+      build:
+        context: ./
+        dockerfile: Dockerfile.ansible
+      volumes:
+        - ./:/work
+      networks:
+         - net
+    target_1:
+      container_name: target_1
+      image: target_ansible
+      build:
+        context: ./
+        dockerfile: Dockerfile.target
+      networks:
+         - net
+
+
+networks:
+  net:
